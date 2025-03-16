@@ -1,0 +1,18 @@
+# Utiliser l'image officielle de Python
+FROM python:3.12.5
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copier tous les fichiers de 'frontend' dans le conteneur sous '/app'
+COPY . /app/
+
+# Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Exposer le port de Streamlit
+EXPOSE 8501
+
+# Lancer l'application Streamlit
+COPY interface.py /app/
+CMD ["streamlit", "run", "interface.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
