@@ -3,10 +3,20 @@ from pydantic import BaseModel
 import os
 import fitz  # PyMuPDF
 from google import genai
-
-client = genai.Client(api_key="AIzaSyCf1mb4wr8nq59kJFZ5LSbYPtV1n0muIEU")
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Autorise les requêtes provenant de n'importe quelle origine (cela peut être restreint selon ton besoin)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Remplace "*" par l'URL de ton frontend si tu veux restreindre les accès
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+client = genai.Client(api_key="AIzaSyCf1mb4wr8nq59kJFZ5LSbYPtV1n0muIEU")
+
 
 # Charger le texte des PDFs UNE SEULE FOIS
 def extract_text_from_pdfs_in_folder(folder_path):
