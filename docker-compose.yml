@@ -1,14 +1,22 @@
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "8501:8501"
-    depends_on:
-      - backend
-    environment:
-      - API_URL=http://backend:8000/ask  # Utilisation du nom du service backend comme URL
-
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Mappe le port 8000 du conteneur au port 8000 de la machine hôte
+    networks:
+      - chatbot-network  # Ajoute le service backend au réseau chatbot-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8501:8501"  # Mappe le port 8501 du conteneur au port 8501 de la machine hôte
+    depends_on:
+      - backend  # Indique que frontend dépend du service backend
+    networks:
+      - chatbot-network  # Ajoute le service frontend au même réseau chatbot-network
+
+networks:
+  chatbot-network:
+    driver: bridge  # Spécifie le type de réseau "bridge" pour la communication entre les services 
