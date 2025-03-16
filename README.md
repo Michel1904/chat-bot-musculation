@@ -1,4 +1,3 @@
-
 # Chatbot Musculation
 
 ## Description
@@ -21,7 +20,7 @@ Avant de commencer, vous devez avoir installé Docker et Docker Compose sur votr
 ### 1. Clonez ce repository
 
 ```bash
-git clone https://github.com/votre-utilisateur/chatbot-musculation.git
+git clone  https://github.com/Michel1904/chat-bot-musculation.git
 cd chatbot-musculation
 ```
 
@@ -56,13 +55,14 @@ Le chatbot devrait être opérationnel, et vous pouvez commencer à poser des qu
 ```
 chatbot-musculation/
 │
-├── backend/                 # Code backend FastAPI
+├── backend/             # Code backend FastAPI
 │   ├── main.py              # Point d'entrée pour l'application FastAPI
-│   └── ...                  # Autres fichiers nécessaires au backend
+│   └── Dockerfile
+│   └── Dossier pdf         # Autres fichiers nécessaires au backend
 │
 ├── frontend/                # Code frontend Streamlit
 │   ├── interface.py         # Code principal pour l'interface utilisateur
-│   └── ...                  # Autres fichiers nécessaires au frontend
+│   └── Dockerfile           # Autres fichiers nécessaires au frontend
 │
 ├── docker-compose.yml       # Configuration de Docker Compose
 └── README.md                # Ce fichier README
@@ -87,3 +87,5 @@ L'interface utilisateur est construite avec Streamlit. Elle offre une interface 
 ## Déploiement
 
 Le projet est conteneurisé avec Docker, ce qui permet de le déployer facilement dans différents environnements. Vous pouvez modifier le fichier `docker-compose.yml` pour personnaliser les ports ou l'environnement d'exécution.
+```
+
